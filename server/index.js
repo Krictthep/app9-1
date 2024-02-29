@@ -1,13 +1,17 @@
 
 const express = require('express')
 const app = express()
-const port = 10000
+const port = 80
 
 app.use(express.urlencoded({extends: true}))
 app.use(express.json())
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 // const { default: mongoose } = require('mongoose');
+
+// you explicitly create the http server
+const server = require('http').createServer(app);
+server.listen(port);
 
 
 const username = "krictthep";
@@ -20,6 +24,10 @@ var ObjectId = require('mongodb').ObjectId
 //  const uri =
 
 const client = new MongoClient(uri);
+
+app.get('/', (req, res) => {
+  res.send('Connected Service')
+})
 
 app.post('/api/db/create', (req,res) => {
 
@@ -190,6 +198,6 @@ app.post('/api/db/update', (req,res) => {
 
 
 
-app.listen(port, ()=>{
-  console.log('Server listening on port ' + port)
-})
+// app.listen(port, ()=>{
+//   console.log('Server listening on port ' + port)
+// })
