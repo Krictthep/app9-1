@@ -1,7 +1,7 @@
 
 const express = require('express')
 const app = express()
-const port = 8000
+const port = 10000
 
 app.use(express.urlencoded({extends: true}))
 app.use(express.json())
